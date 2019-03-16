@@ -18,12 +18,14 @@ class Application{
         }
     }
     protected function action(){
-        echo $this->path;
         $parts = explode("/", $this->path);
         $controllerId = array_shift($parts);
         $actionId = array_shift($parts);
         $parameters = $parts;
-        
+        $controllerClass = ucfirst($controllerId).'Controller';
+        $action = 'action'.ucfirst($actionId);
+        $controller = new $controllerClass($controllerId);
+        $controller->$action($parameters);
     }
 }
 
