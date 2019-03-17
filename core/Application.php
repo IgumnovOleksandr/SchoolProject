@@ -2,6 +2,7 @@
 class Application{
     protected $path;
     public function run() {
+        DB::connect();
         $this->route();
         $this->action();
     }

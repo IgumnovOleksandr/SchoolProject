@@ -5,7 +5,8 @@ class PostController extends Controller{
         echo "ControllerId: post; actionId: view";
     }
     public function actionList($parameters = []){
-        echo "ControllerId: post; actionId: list";
+        $posts = Post::getAllPosts();
+        print_r($posts);
     }
 }
 
