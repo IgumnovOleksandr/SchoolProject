@@ -1,11 +1,17 @@
-<?php 
-require_once 'core/Application.php';
-require_once 'core/Controller.php';
-require_once 'controllers/PostController.php';
-require_once 'controllers/HomeController.php';
-require_once 'controllers/ArticleController.php';
-require_once 'models/Post.php';
-require_once 'classes/db.php';
+<?php
 require_once 'config/config.php';
+
+define("ROOT", __DIR__);
+
+spl_autoload_register(function($className) {
+    $dirs = ["controllers", "models", "core"];
+    foreach ($dirs as $dir){
+        $file = "$dir/$className.php";
+        if(is_file($file)){
+            require_once $file;
+            break;
+        }
+    }
+});
 $app = new Application();
 $app->run();
